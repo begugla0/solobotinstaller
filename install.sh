@@ -77,10 +77,22 @@ add-apt-repository ppa:deadsnakes/ppa -y
 apt update -y
 apt install -y python3.12 python3.12-venv python3.12-dev
 
+# Выбор ветки репозитория
+echo -e "${YELLOW}Выберите ветку для скачивания бота:${RESET}"
+select BRANCH in "release (main)" "dev (dev)"; do
+    case $BRANCH in
+        "release (main)" ) GIT_BRANCH="main"; break;;
+        "dev (dev)" ) GIT_BRANCH="dev"; break;;
+        * ) echo "Неверный выбор";;
+    esac
+done
+echo -e "${GREEN}Выбрана ветка: $GIT_BRANCH${RESET}"
+
 # Скачивание бота
-echo -e "${CYAN}Скачиваю Solo_bot с GitHub...${RESET}"
+echo -e "${CYAN}Скачиваю Solo_bot с GitHub, ветка $GIT_BRANCH...${RESET}"
 rm -rf "$BOT_DIR"
-git clone https://github.com/Vladless/Solo_bot.git "$BOT_DIR"
+git clone --branch "$GIT_BRANCH" --depth 1 https://github.com/Vladless/Solo_bot.git "$BOT_DIR"
+
 
 # Пауза для добавления config.py и texts.py
 echo -e "${YELLOW}==============================================${RESET}"
