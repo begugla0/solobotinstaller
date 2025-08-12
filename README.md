@@ -25,7 +25,7 @@
 1. Скачайте скрипт:
 
 ```bash
-curl -O https://yourdomain.com/install.sh && chmod +x install.sh && sudo ./install.sh
+curl -O https://github.com/begugla0/solobotinstaller/blob/main/install.sh && chmod +x install.sh && sudo ./install.sh
 ```
 
 2. Введите необходимые параметры:
